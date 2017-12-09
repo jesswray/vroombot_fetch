@@ -13,6 +13,10 @@ exports.handler = (event, context, callback) => {
   const onScan = (err, data) => {
     const response = {
       "statusCode": err ? 500 : 200,
+      headers: {
+        "Access-Control-Allow-Origin" : "http://localhost:3000", // Required for CORS support to work
+        "Access-Control-Allow-Credentials" : true // Required for cookies, authorization headers with HTTPS
+      },
       "body": JSON.stringify(err || data),
     };
 
